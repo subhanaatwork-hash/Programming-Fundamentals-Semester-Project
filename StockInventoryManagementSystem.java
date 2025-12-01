@@ -4,7 +4,7 @@ public class StockInventoryManagementSystem {
 
     static Scanner sc = new Scanner(System.in);
 
-    // Dummy login data
+    
     static String adminUser = "Admin";
     static String adminPass = "123";
     static String salesUser = "Sales_person";
@@ -191,3 +191,4 @@ public class StockInventoryManagementSystem {
         System.out.println("Product Not Found!");
     }
 }
+
