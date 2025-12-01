@@ -3,24 +3,6 @@ import java.util.*;
 public class InventoryManagementSystem {
     static Scanner sc = new Scanner(System.in);
 
-    // ---------- GLOBAL ARRAYS FOR DATA ----------
-    static String[] productIDs;
-    static String[] productNames;
-    static int[] productQuantity;
-    static double[] productPrice;
-    static int productCount;
-
-    static String[] clientNames;
-    static String[] clientIDs;
-    static int clientCount;
-
-    static String[] vendorNames;
-    static String[] vendorIDs;
-    static int vendorCount;
-
-    static String[] salesPersonsList;
-    static String[] salesPersonPasswords;
-
     public static void main(String[] args) {
 
         initializeData(); // initialize arrays with default data
@@ -53,7 +35,26 @@ public class InventoryManagementSystem {
 
     // ---------- INITIALIZE DATA ----------
     public static void initializeData() {
+
+        static String[] productIDs;
+    static String[] productNames;
+    static int[] productQuantity;
+    static double[] productPrice;
+    static int productCount;
+
+    static String[] clientNames;
+    static String[] clientIDs;
+    static int clientCount;
+
+    static String[] vendorNames;
+    static String[] vendorIDs;
+    static int vendorCount;
+
+    static String[] salesPersonsList;
+    static String[] salesPersonPasswords;
+
         // Initialize products
+
         productIDs = new String[100];
         productNames = new String[100];
         productQuantity = new int[100];
@@ -139,20 +140,7 @@ public class InventoryManagementSystem {
 
     // ---------- CREATE SALES ORDER ----------
     public static void createSalesOrder(){
-        System.out.println("\nCreating Sales Order...");
-
-        System.out.print("Enter Customer Name: ");
-        String customerName = sc.nextLine();
-
-        System.out.print("Enter Product ID: ");
-        String productID = sc.nextLine();
-
-        System.out.print("Enter Quantity: ");
-        int quantity = sc.nextInt();
-        sc.nextLine(); 
-
-        System.out.println("Order Created Successfully for " + customerName);
-        System.out.println("Product ID: " + productID + " | Quantity: " + quantity + " updated");
+        
 
         
     }
@@ -186,5 +174,3 @@ public class InventoryManagementSystem {
         // TODO: Add admin login and menu later
     }
 }
-
-
