@@ -28,7 +28,7 @@ public class InventoryManagementSystem50 {
     static int vendorCount = 0;
     static final String VENDOR_FILE = "vendors.txt";
 
-    // --- Sales Records (simplified) ---
+    // --- Sales Records---
     static List<String> salesRecords = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -559,3 +559,4 @@ public class InventoryManagementSystem50 {
         }
     }
 }
+
