@@ -1,0 +1,7 @@
+P1,Vacuum,10,1000
+P2,Refrigerator,10,1000
+P3,AC,10,1000
+P4,Microwave Oven,10,1000
+P5,TV,10,1000
+P6,FAN,30,2000
+P6,FAN,0,2000
