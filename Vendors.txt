@@ -1,6 +1,0 @@
-VendorName,VendorContact
-Star Suppliers,03001234567
-Alpha Traders,03110001122
-OfficeHub,03450007890
-BlueWhale Stationery,03315553344
-SupplyZone,03007778899
