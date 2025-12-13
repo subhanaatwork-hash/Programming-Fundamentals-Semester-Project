@@ -421,15 +421,66 @@ static void deleteVendor() {
 
     // ---------- REPORTS ----------
     static void viewReports() {
-        System.out.println("\n--- STOCK REPORT ---");
-        for(int i=0;i<productCount;i++){
-            System.out.printf("%s | %s | Stock: %s | Price: %s\n", productNames[i], productIDs[i], productStock[i], productPrice[i]);
-        }
-        System.out.println("\n--- SALES REPORT ---");
-        for(int i=0;i<salesCount;i++){
-            System.out.printf("%s sold: %s\n", salesProducts[i], salesQuantity[i]);
+    while (true) {
+        System.out.println("\n--- VIEW REPORTS MENU ---");
+        System.out.println("1. View Stock Report");
+        System.out.println("2. Low Stock Report");
+        System.out.println("3. Sales Summary");
+        System.out.println("4. Purchase Summary");
+        System.out.println("5. Back to Admin Dashboard");
+        System.out.print("Enter option: ");
+        String choice = sc.nextLine();
+
+        switch (choice) {
+            case "1": stockReport(); break;
+            case "2": lowStockReport(); break;
+            case "3": salesSummary(); break;
+            case "4": purchaseSummary(); break;
+            case "5": return;
+            default: System.out.println("Invalid option."); 
         }
     }
+}
+
+static void stockReport() {
+    System.out.println("\n--- STOCK REPORT ---");
+    for (int i = 0; i < productCount; i++) {
+        System.out.printf("%s | %s | Stock: %s | Price: %s\n",
+                productNames[i], productIDs[i], productStock[i], productPrice[i]);
+    }
+}
+
+static void lowStockReport() {
+    System.out.println("\n--- LOW STOCK REPORT (Stock <= 5) ---");
+    boolean found = false;
+    for (int i = 0; i < productCount; i++) {
+        int stock = Integer.parseInt(productStock[i]);
+        if (stock <= 5) {
+            System.out.printf("%s | %s | Stock: %s\n",
+                    productNames[i], productIDs[i], productStock[i]);
+            found = true;
+        }
+    }
+    if (!found) System.out.println("No products with low stock.");
+}
+
+static void salesSummary() {
+    System.out.println("\n--- SALES SUMMARY ---");
+    if (salesCount == 0) {
+        System.out.println("No sales yet.");
+        return;
+    }
+    for (int i = 0; i < salesCount; i++) {
+        System.out.printf("%s sold: %s\n", salesProducts[i], salesQuantity[i]);
+    }
+}
+
+static void purchaseSummary() {
+    System.out.println("\n--- PURCHASE SUMMARY ---");
+    // Optional: if you want to track purchases, you need to store them similarly to sales
+    System.out.println("Feature under development.");
+}
+
 
     // ---------- FILE HANDLING ----------
     static void saveProductsToFile(){
@@ -509,4 +560,5 @@ static boolean isValidContact(String contact) {
     return contact.matches("\\d+");
 }
 }
+
 
