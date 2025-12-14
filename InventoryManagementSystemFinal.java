@@ -240,15 +240,61 @@ static void salesLogin() {
     }
 
     static void updateProduct() {
-        viewProducts();
-        System.out.print("Enter product number to update: "); String s = sc.nextLine();
-        int idx = stringToIndex(s, productCount); if (idx==-1) return;
-        System.out.print("Enter new Product Name: "); productNames[idx] = sc.nextLine();
-        System.out.print("Enter new Stock Quantity: "); productStock[idx] = sc.nextLine();
-        System.out.print("Enter new Product Price: "); productPrice[idx] = sc.nextLine();
-        saveProductsToFile();
-        System.out.println("Product updated.");
+    viewProducts();
+    System.out.print("Enter product number to update: ");
+    String s = sc.nextLine();
+
+    int idx = stringToIndex(s, productCount);
+    if (idx == -1) return;
+
+    // Validate Product Name (alphabets + spaces only)
+    String newName;
+    while (true) {
+        System.out.print("Enter new Product Name: ");
+        newName = sc.nextLine().trim();
+
+        if (newName.matches("[a-zA-Z ]+")) {
+            break;
+        } else {
+            System.out.println("❌ Invalid name! Product name must contain only alphabets.");
+        }
     }
+
+    // Validate Stock (digits only)
+    String newStock;
+    while (true) {
+        System.out.print("Enter new Stock Quantity: ");
+        newStock = sc.nextLine().trim();
+
+        if (newStock.matches("\\d+")) {
+            break;
+        } else {
+            System.out.println("❌ Invalid stock! Enter numbers only.");
+        }
+    }
+
+    // Validate Price (digits only)
+    String newPrice;
+    while (true) {
+        System.out.print("Enter new Product Price: ");
+        newPrice = sc.nextLine().trim();
+
+        if (newPrice.matches("\\d+")) {
+            break;
+        } else {
+            System.out.println("❌ Invalid price! Enter numbers only.");
+        }
+    }
+
+    // Update values
+    productNames[idx] = newName;
+    productStock[idx] = newStock;
+    productPrice[idx] = newPrice;
+
+    saveProductsToFile();
+    System.out.println("✔ Product updated successfully.");
+}
+
 
     static void deleteProduct() {
         viewProducts();
@@ -392,20 +438,37 @@ static void deleteVendor() {
     }
 
     static void createPurchaseOrder() {
-        viewProducts();
-        System.out.print("Select product number to add stock: ");
-        int idx = stringToIndex(sc.nextLine(), productCount); if (idx==-1) return;
-        System.out.print("Enter quantity to add: "); 
-        String qty = sc.nextLine();
-        try {
-            int current = Integer.parseInt(productStock[idx]);
-            int add = Integer.parseInt(qty);
-            if (add<0) { System.out.println("Quantity cannot be negative."); return;}
-            productStock[idx] = String.valueOf(current+add);
-            saveProductsToFile();
-            System.out.println("Stock updated.");
-        } catch(Exception e){System.out.println("Invalid quantity.");}
+    viewProducts();
+    System.out.print("Select product number to add stock: ");
+    int idx = stringToIndex(sc.nextLine(), productCount);
+    if (idx == -1) return;
+
+    System.out.print("Enter quantity to add: ");
+    String qty = sc.nextLine();
+
+    try {
+        int current = Integer.parseInt(productStock[idx]);
+        int add = Integer.parseInt(qty);
+
+        if (add <= 0) {
+            System.out.println("Quantity must be greater than zero.");
+            return;
+        }
+
+        productStock[idx] = String.valueOf(current + add);
+
+        // store purchase record
+        purchaseProducts[purchaseCount] = productNames[idx];
+        purchaseQuantity[purchaseCount] = qty;
+        purchaseCount++;
+
+        saveProductsToFile();
+        System.out.println("✔ Purchase order completed.");
+    } catch (Exception e) {
+        System.out.println("Invalid quantity.");
     }
+}
+
 
     static void createSalesOrder() {
         viewProducts();
@@ -484,8 +547,16 @@ static void salesSummary() {
 
 static void purchaseSummary() {
     System.out.println("\n--- PURCHASE SUMMARY ---");
-    // Optional: if you want to track purchases, you need to store them similarly to sales
-    System.out.println("Feature under development.");
+
+    if (purchaseCount == 0) {
+        System.out.println("No purchase orders recorded.");
+        return;
+    }
+
+    for (int i = 0; i < purchaseCount; i++) {
+        System.out.printf("%s purchased: %s units\n",
+                purchaseProducts[i], purchaseQuantity[i]);
+    }
 }
 
 
@@ -567,6 +638,7 @@ static boolean isValidContact(String contact) {
     return contact.matches("\\d+");
 }
 }
+
 
 
 
