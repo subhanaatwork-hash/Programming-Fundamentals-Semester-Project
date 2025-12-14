@@ -215,11 +215,74 @@ static void salesLogin() {
     }
 
     static void addProduct() {
-        if (productCount >= MAX_PRODUCTS) { System.out.println("Cannot add more products."); return; }
-        System.out.print("Enter Product ID: "); String id = sc.nextLine();
-        System.out.print("Enter Product Name: "); String name = sc.nextLine();
-        System.out.print("Enter Stock Quantity: "); String stock = sc.nextLine();
-        System.out.print("Enter Product Price: "); String price = sc.nextLine();
+    if (productCount >= MAX_PRODUCTS) {
+        System.out.println("Cannot add more products.");
+        return;
+    }
+
+    // Product ID → digits only
+    String id;
+    while (true) {
+        System.out.print("Enter Product ID (numbers only): ");
+        id = sc.nextLine().trim();
+
+        if (id.matches("\\d+")) {
+            break;
+        } else {
+            System.out.println("Invalid ID! Product ID must contain numbers only.");
+        }
+    }
+
+    // Product Name → alphabets only
+    String name;
+    while (true) {
+        System.out.print("Enter Product Name (alphabets only): ");
+        name = sc.nextLine().trim();
+
+        if (name.matches("[a-zA-Z ]+")) {
+            break;
+        } else {
+            System.out.println("Invalid Name! Product name cannot contain numbers.");
+        }
+    }
+
+    // Stock → digits only
+    String stock;
+    while (true) {
+        System.out.print("Enter Stock Quantity: ");
+        stock = sc.nextLine().trim();
+
+        if (stock.matches("\\d+")) {
+            break;
+        } else {
+            System.out.println(" Invalid stock! Enter numbers only.");
+        }
+    }
+
+    // Price → digits only
+    String price;
+    while (true) {
+        System.out.print("Enter Product Price: ");
+        price = sc.nextLine().trim();
+
+        if (price.matches("\\d+")) {
+            break;
+        } else {
+            System.out.println(" Invalid price! Enter numbers only.");
+        }
+    }
+
+    // Store product
+    productIDs[productCount] = id;
+    productNames[productCount] = name;
+    productStock[productCount] = stock;
+    productPrice[productCount] = price;
+    productCount++;
+
+    saveProductsToFile();
+    System.out.println(" Product added successfully.");
+}
+
 
         productIDs[productCount] = id;
         productNames[productCount] = name;
@@ -638,6 +701,7 @@ static boolean isValidContact(String contact) {
     return contact.matches("\\d+");
 }
 }
+
 
 
 
