@@ -35,6 +35,13 @@ public class InventoryManagementSystemFinal {
     static String[] salesQuantity = new String[MAX_SALES];
     static int salesCount = 0;
 
+    // ---------- Purchases ----------
+    static final int MAX_PURCHASES = 1000;
+    static String[] purchaseProducts = new String[MAX_PURCHASES];
+    static String[] purchaseQuantity = new String[MAX_PURCHASES];
+    static int purchaseCount = 0;
+
+
     public static void main(String[] args) {
         loadProductsFromFile();
         loadVendorsFromFile();
@@ -560,5 +567,6 @@ static boolean isValidContact(String contact) {
     return contact.matches("\\d+");
 }
 }
+
 
 
