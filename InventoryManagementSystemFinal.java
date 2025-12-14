@@ -311,12 +311,12 @@ static void salesLogin() {
     if (idx == -1) return;
 
     // Validate Product Name (alphabets + spaces only)
-    String newName;
+    String name;
     while (true) {
         System.out.print("Enter Product Name: ");
-        newName = sc.nextLine().trim();
+        name = sc.nextLine().trim();
 
-        if (newName.matches("[a-zA-Z ]+")) {
+        if (name.matches("[a-zA-Z ]+")) {
             break;
         } else {
             System.out.println(" Invalid name! Product name must contain only alphabets.");
@@ -324,12 +324,12 @@ static void salesLogin() {
     }
 
     // Validate Stock (digits only)
-    String newStock;
+    String Stock;
     while (true) {
-        System.out.print("Enter new Stock Quantity: ");
-        newStock = sc.nextLine().trim();
+        System.out.print("Enter Stock Quantity: ");
+        Stock = sc.nextLine().trim();
 
-        if (newStock.matches("\\d+")) {
+        if (Stock.matches("\\d+")) {
             break;
         } else {
             System.out.println("Invalid stock! Enter numbers only.");
@@ -337,12 +337,12 @@ static void salesLogin() {
     }
 
     // Validate Price (digits only)
-    String newPrice;
+    String Price;
     while (true) {
-        System.out.print("Enter new Product Price: ");
-        newPrice = sc.nextLine().trim();
+        System.out.print("Enter  Product Price: ");
+        Price = sc.nextLine().trim();
 
-        if (newPrice.matches("\\d+")) {
+        if (Price.matches("\\d+")) {
             break;
         } else {
             System.out.println(" Invalid price! Enter numbers only.");
@@ -350,9 +350,9 @@ static void salesLogin() {
     }
 
     // Update values
-    productNames[idx] = newName;
-    productStock[idx] = newStock;
-    productPrice[idx] = newPrice;
+    productNames[idx] = name;
+    productStock[idx] = Stock;
+    productPrice[idx] = Price;
 
     saveProductsToFile();
     System.out.println("Product updated successfully.");
@@ -701,6 +701,7 @@ static boolean isValidContact(String contact) {
     return contact.matches("\\d+");
 }
 }
+
 
 
 
