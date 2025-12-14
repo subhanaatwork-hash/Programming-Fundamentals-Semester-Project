@@ -250,7 +250,7 @@ static void salesLogin() {
     // Validate Product Name (alphabets + spaces only)
     String newName;
     while (true) {
-        System.out.print("Enter new Product Name: ");
+        System.out.print("Enter Product Name: ");
         newName = sc.nextLine().trim();
 
         if (newName.matches("[a-zA-Z ]+")) {
@@ -638,6 +638,7 @@ static boolean isValidContact(String contact) {
     return contact.matches("\\d+");
 }
 }
+
 
 
 
