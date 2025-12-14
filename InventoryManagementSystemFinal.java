@@ -256,7 +256,7 @@ static void salesLogin() {
         if (newName.matches("[a-zA-Z ]+")) {
             break;
         } else {
-            System.out.println("❌ Invalid name! Product name must contain only alphabets.");
+            System.out.println(" Invalid name! Product name must contain only alphabets.");
         }
     }
 
@@ -269,7 +269,7 @@ static void salesLogin() {
         if (newStock.matches("\\d+")) {
             break;
         } else {
-            System.out.println("❌ Invalid stock! Enter numbers only.");
+            System.out.println("Invalid stock! Enter numbers only.");
         }
     }
 
@@ -282,7 +282,7 @@ static void salesLogin() {
         if (newPrice.matches("\\d+")) {
             break;
         } else {
-            System.out.println("❌ Invalid price! Enter numbers only.");
+            System.out.println(" Invalid price! Enter numbers only.");
         }
     }
 
@@ -292,7 +292,7 @@ static void salesLogin() {
     productPrice[idx] = newPrice;
 
     saveProductsToFile();
-    System.out.println("✔ Product updated successfully.");
+    System.out.println("Product updated successfully.");
 }
 
 
@@ -360,7 +360,7 @@ static void addVendor() {
         if (name.matches("[a-zA-Z ]+")) {
             break;  // name valid
         } else {
-            System.out.println("❌ Invalid name! Only alphabets and spaces allowed.");
+            System.out.println(" Invalid name! Only alphabets and spaces allowed.");
         }
     }
 
@@ -373,7 +373,7 @@ static void addVendor() {
         if (contact.matches("[0-9]+")) {
             break; // contact valid
         } else {
-            System.out.println("❌ Invalid contact! Only numbers allowed.");
+            System.out.println(" Invalid contact! Only numbers allowed.");
         }
     }
 
@@ -383,7 +383,7 @@ static void addVendor() {
     vendorCount++;
 
     saveVendorsToFile();
-    System.out.println("✔ Vendor added successfully!");
+    System.out.println("Vendor added successfully!");
 }
 
 static void viewVendors() {
@@ -416,7 +416,7 @@ static void deleteVendor() {
 
     vendorCount--;
     saveVendorsToFile();
-    System.out.println("✔ Vendor deleted successfully!");
+    System.out.println("Vendor deleted successfully!");
 }
 
     // ---------- ORDERS ----------
@@ -463,7 +463,7 @@ static void deleteVendor() {
         purchaseCount++;
 
         saveProductsToFile();
-        System.out.println("✔ Purchase order completed.");
+        System.out.println(" Purchase order completed.");
     } catch (Exception e) {
         System.out.println("Invalid quantity.");
     }
@@ -497,7 +497,7 @@ static void deleteVendor() {
         System.out.println("2. Low Stock Report");
         System.out.println("3. Sales Summary");
         System.out.println("4. Purchase Summary");
-        System.out.println("5. Back to Admin Dashboard");
+        System.out.println("5. Back to Dashboard");
         System.out.print("Enter option: ");
         String choice = sc.nextLine();
 
@@ -638,6 +638,7 @@ static boolean isValidContact(String contact) {
     return contact.matches("\\d+");
 }
 }
+
 
 
 
