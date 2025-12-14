@@ -229,7 +229,7 @@ static void salesLogin() {
         if (id.matches("\\d+")) {
             break;
         } else {
-            System.out.println("Invalid ID! Product ID must contain numbers only.");
+            System.out.println(" Invalid ID! Product ID must contain numbers only.");
         }
     }
 
@@ -242,7 +242,7 @@ static void salesLogin() {
         if (name.matches("[a-zA-Z ]+")) {
             break;
         } else {
-            System.out.println("Invalid Name! Product name cannot contain numbers.");
+            System.out.println(" Invalid Name! Product name cannot contain numbers.");
         }
     }
 
@@ -255,7 +255,7 @@ static void salesLogin() {
         if (stock.matches("\\d+")) {
             break;
         } else {
-            System.out.println(" Invalid stock! Enter numbers only.");
+            System.out.println("Invalid stock! Enter numbers only.");
         }
     }
 
@@ -280,18 +280,8 @@ static void salesLogin() {
     productCount++;
 
     saveProductsToFile();
-    System.out.println(" Product added successfully.");
+    System.out.println("Product added successfully.");
 }
-
-
-        productIDs[productCount] = id;
-        productNames[productCount] = name;
-        productStock[productCount] = stock;
-        productPrice[productCount] = price;
-        productCount++;
-        saveProductsToFile();
-        System.out.println("Product added.");
-    }
 
     static void viewProducts() {
         System.out.println("\n--- PRODUCT LIST ---");
@@ -332,7 +322,7 @@ static void salesLogin() {
         if (Stock.matches("\\d+")) {
             break;
         } else {
-            System.out.println("Invalid stock! Enter numbers only.");
+            System.out.println(" Invalid stock! Enter numbers only.");
         }
     }
 
@@ -355,7 +345,7 @@ static void salesLogin() {
     productPrice[idx] = Price;
 
     saveProductsToFile();
-    System.out.println("Product updated successfully.");
+    System.out.println(" Product updated successfully.");
 }
 
 
@@ -423,7 +413,7 @@ static void addVendor() {
         if (name.matches("[a-zA-Z ]+")) {
             break;  // name valid
         } else {
-            System.out.println(" Invalid name! Only alphabets and spaces allowed.");
+            System.out.println("Invalid name! Only alphabets and spaces allowed.");
         }
     }
 
@@ -436,7 +426,7 @@ static void addVendor() {
         if (contact.matches("[0-9]+")) {
             break; // contact valid
         } else {
-            System.out.println(" Invalid contact! Only numbers allowed.");
+            System.out.println( "Invalid contact! Only numbers allowed.");
         }
     }
 
@@ -479,7 +469,7 @@ static void deleteVendor() {
 
     vendorCount--;
     saveVendorsToFile();
-    System.out.println("Vendor deleted successfully!");
+    System.out.println(" Vendor deleted successfully!");
 }
 
     // ---------- ORDERS ----------
@@ -514,19 +504,19 @@ static void deleteVendor() {
         int add = Integer.parseInt(qty);
 
         if (add <= 0) {
-            System.out.println("Quantity must be greater than zero.");
+            System.out.println("Quantity must be greater than zero. Low Stock Warning!");
             return;
         }
 
         productStock[idx] = String.valueOf(current + add);
 
-        // store purchase record
+        //  store purchase record
         purchaseProducts[purchaseCount] = productNames[idx];
         purchaseQuantity[purchaseCount] = qty;
         purchaseCount++;
 
         saveProductsToFile();
-        System.out.println(" Purchase order completed.");
+        System.out.println("Purchase order completed.");
     } catch (Exception e) {
         System.out.println("Invalid quantity.");
     }
@@ -623,6 +613,8 @@ static void purchaseSummary() {
 }
 
 
+
+
     // ---------- FILE HANDLING ----------
     static void saveProductsToFile(){
         try(PrintWriter pw=new PrintWriter(new FileWriter(PRODUCT_FILE))){
@@ -701,11 +693,4 @@ static boolean isValidContact(String contact) {
     return contact.matches("\\d+");
 }
 }
-
-
-
-
-
-
-
 
